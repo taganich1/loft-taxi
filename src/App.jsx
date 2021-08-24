@@ -5,7 +5,6 @@ import Map from "./components/Map/Map";
 import Profile from "./components/Profile/Profile";
 import Registration from "./components/Registration/Registration";
 import Login from "./components/Login/Login";
-import Back from "./img/registration-background.png";
 
 function App(props) {
   const [router, setRouter] = useState("registration");
@@ -27,10 +26,6 @@ function App(props) {
     setRouter(event.target.value);
   };
 
-  const backImg = () => {
-    return Back;
-  };
-
   console.log(router);
 
   return (
@@ -42,11 +37,7 @@ function App(props) {
       {router === "map" ? (
         <Map />
       ) : router === "registration" ? (
-        <Registration
-          back={backImg}
-          submitRegister={submitRegister}
-          login={login}
-        />
+        <Registration submitRegister={submitRegister} login={login} />
       ) : router === "profile" ? (
         <Profile />
       ) : (
