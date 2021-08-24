@@ -1,0 +1,151 @@
+.register {
+  width: 100%;
+  height: 100%;
+
+  &-logo {
+  }
+  &-form {
+    background-color: #fff;
+    padding-left: 50px;
+    padding-top: 80px;
+    padding-right: 50px;
+    padding-bottom: 65px;
+  }
+  &-title {
+    font-size: 36px;
+    font-weight: 500;
+    margin-bottom: 30px;
+  }
+  &__signup {
+    font-size: 16px;
+    display: flex;
+    margin-bottom: 20px;
+    p {
+      color: #505050;
+    }
+    &-link {
+      color: #1473e6;
+      cursor: pointer;
+      outline: none !important;
+      border: none;
+      background-color: transparent;
+    }
+  }
+  &__signin {
+    font-size: 15px;
+    color: #747474;
+    input {
+    }
+  }
+  &__signin-email {
+    margin-bottom: 5px;
+    input {
+      width: 390px;
+      background: transparent;
+      border-bottom: 2px solid #eaeaea;
+      border-top: none;
+      border-right: none;
+      border-left: none;
+    }
+    input:focus {
+      outline: none;
+      border-bottom: 2px solid #1473e6;
+      margin-bottom: 25px;
+    }
+    margin-bottom: 20px;
+  }
+
+  &__signin-password {
+    width: 100%;
+    input {
+      width: 390px;
+      background: transparent;
+      border-bottom: 2px solid #eaeaea;
+      border-top: none;
+      border-right: none;
+      border-left: none;
+    }
+    input:focus {
+      outline: none;
+      border-bottom: 2px solid #1473e6;
+      margin-bottom: 25px;
+    }
+  }
+  &__signin-name {
+    width: 100%;
+    input {
+      width: 190px;
+      max-width: 190px;
+      margin-right: 15px;
+      background: transparent;
+      border-bottom: 2px solid #eaeaea;
+      border-top: none;
+      border-right: none;
+      border-left: none;
+    }
+    input:focus {
+      outline: none;
+      border-bottom: 2px solid #1473e6;
+      margin-bottom: 25px;
+    }
+  }
+  &__signin-surname {
+    width: 100%;
+    input {
+      width: 190px;
+      background: transparent;
+      border-bottom: 2px solid #eaeaea;
+      border-top: none;
+      border-right: none;
+      border-left: none;
+    }
+    input:focus {
+      outline: none;
+      border-bottom: 2px solid #1473e6;
+      margin-bottom: 25px;
+    }
+  }
+  &__signin-password {
+    padding-bottom: 40px;
+  }
+  &__signin-submit {
+    display: flex;
+    justify-content: flex-end;
+    input {
+      background-color: #ffc617;
+      font-size: 21px;
+      border: none;
+      border-radius: 4px;
+      padding-left: 30px;
+      padding-right: 30px;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      cursor: pointer;
+    }
+  }
+  &__signin-submit:focus {
+  }
+}
+
+.register__signin__password {
+  width: 100%;
+  input {
+    width: 390px;
+  }
+}
+
+.signin__group {
+  display: flex;
+  padding-bottom: 35px;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 220px;
+
+  padding-bottom: 280px;
+}
