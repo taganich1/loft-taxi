@@ -19,6 +19,10 @@ function App(props) {
     setRouter("login");
   };
 
+  const register = () => {
+    setRouter("registration");
+  };
+
   const handlePage = (event) => {
     setRouter(event.target.value);
   };
@@ -46,7 +50,7 @@ function App(props) {
       ) : router === "profile" ? (
         <Profile />
       ) : (
-        <Login />
+        <Login register={register} submitRegister={submitRegister} />
       )}
     </div>
   );
