@@ -1,5 +1,6 @@
 html {
   background-color: #ddd;
+
   .App {
     .App-header {
       top: 0;
@@ -13,8 +14,12 @@ html {
       padding-left: 24px;
       padding-right: 24px;
       background-color: #fff;
+
       .navbar {
         padding: 16px 8px;
+        display: flex;
+        justify-content: space-between;
+
         .navbar-item {
           cursor: pointer;
           padding: 12px 16px;
@@ -30,6 +35,7 @@ html {
 
       .logo__loftcshool {
       }
+
       .navbar-item:hover {
         background-color: #ddd;
         transition: 0.8s;
