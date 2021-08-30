@@ -1,6 +1,8 @@
 import React from 'react';
 import './Registration.styles.scss';
 import Back from '../../img/registration-background.png';
+import Login from '../Login/Login';
+import PropTypes from 'prop-types';
 
 const Registration = ({
   submitRegister,
@@ -69,5 +71,12 @@ const Registration = ({
     </div>
   );
 };
+
+
+Login.propTypes = {
+  login: PropTypes.func,
+  submitRegister: PropTypes.func,
+};
+
 
 export default Registration;

@@ -33,7 +33,7 @@ function App(props) {
   console.log(router);
 
   return (
-    <div className='App'>
+    <div className="App">
       {router === "login" ? null : router === "registration" ? null : (
         <Header handlePage={handlePage} />
       )}

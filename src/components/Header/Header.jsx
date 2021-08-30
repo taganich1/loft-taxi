@@ -1,13 +1,10 @@
-import React, {useState} from 'react';
-import './Header.styles.scss';
-import About from '../About/About';
-import Map from '../Map/Map';
-import Profile from '../Profile/Profile';
-import Login from '../Registration/Registration';
-import logo from '../../img/logo.svg';
+import React from "react";
+import "./Header.styles.scss";
 
+import logo from "../../img/logo.svg";
+import PropTypes from "prop-types";
 
-const Header = ({handlePage}) => {
+const Header = ({ handlePage }) => {
   return (
     <header className="App-header" style={{}}>
       <div className="header-logo">
@@ -36,6 +33,10 @@ const Header = ({handlePage}) => {
       </div>
     </header>
   );
+};
+
+Header.propTypes = {
+  handlePage: PropTypes.func.isRequired,
 };
 
 export default Header;
