@@ -1,19 +1,18 @@
-import React from 'react';
-import './Registration.styles.scss';
-import Back from '../../img/registration-background.png';
-import Login from '../Login/Login';
-import PropTypes from 'prop-types';
+import React, { useContext } from "react";
+import "./Registration.styles.scss";
+import Back from "../../img/registration-background.png";
+import PropTypes from "prop-types";
+import AuthContext from "../../contex/AuthContext";
 
-const Registration = ({
-  submitRegister,
-  login,
-}) => {
+const Registration = ({ handleLogin }) => {
+  const { login } = useContext(AuthContext);
+
+
   return (
     <div
       className="register"
       style={{
-        backgroundImage: 'url(' + Back + ')',
-
+        backgroundImage: "url(" + Back + ")",
       }}
     >
       <div className="container">
@@ -24,17 +23,22 @@ const Registration = ({
           <div className="register-title">Регистрация</div>
           <div className="register__signup">
             <span>Уже зарегистрирован? </span>
-            <button className="register__signup-link" onClick={login}>
+            <button className="register__signup-link" onClick={handleLogin}>
               Войти
             </button>
           </div>
           <div className="register__signin">
-            <form onSubmit={submitRegister}>
+            <form onSubmit={(event) => login(event)}>
               <div className="register__signin-email">
                 <label htmlFor="">
                   Адрес электронной почты
                   <br />
-                  <input type="text" className="email-input" required />
+                  <input
+                    type="text"
+                    className="email-input"
+                    name="email"
+                    required
+                  />
                 </label>
               </div>
               <div className="signin__group">
@@ -58,7 +62,7 @@ const Registration = ({
                 <label htmlFor="">
                   Пароль
                   <br />
-                  <input type="password" required />
+                  <input type="password" name="password" required />
                 </label>
               </div>
               <div className="register__signin-submit">
@@ -72,11 +76,8 @@ const Registration = ({
   );
 };
 
-
-Login.propTypes = {
-  login: PropTypes.func,
-  submitRegister: PropTypes.func,
+Registration.propTypes = {
+  handleLogin: PropTypes.func,
 };
-
 
 export default Registration;

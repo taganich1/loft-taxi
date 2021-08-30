@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Header.styles.scss";
 
 import logo from "../../img/logo.svg";
 import PropTypes from "prop-types";
+import AuthContext from "../../contex/AuthContext";
 
 const Header = ({ handlePage }) => {
+  const { logout } = useContext(AuthContext);
+
   return (
     <header className="App-header" style={{}}>
       <div className="header-logo">
@@ -23,12 +26,8 @@ const Header = ({ handlePage }) => {
         <button value="profile" className="navbar-item" onClick={handlePage}>
           Профиль
         </button>
-        <button
-          className="navbar-item"
-          value="registration"
-          onClick={handlePage}
-        >
-          Зарегестрироваться
+        <button className="navbar-item" value="registration" onClick={logout}>
+          Выйти
         </button>
       </div>
     </header>

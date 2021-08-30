@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Login.styles.scss";
 import Back from "../../img/registration-background.png";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
+import AuthContext from "../../contex/AuthContext";
 
-const Login = ({ register, submitRegister }) => {
+const Login = ({ handleRegister }) => {
+  const { login } = useContext(AuthContext);
   return (
     <div
       className="login"
@@ -19,17 +21,22 @@ const Login = ({ register, submitRegister }) => {
           <div className="login-title">Войти</div>
           <div className="login__signup">
             <span> Новый пользователь? </span>
-            <button className="login__signup-link" onClick={register}>
+            <button className="login__signup-link" onClick={handleRegister}>
               Зарегистрируйтесь
             </button>
           </div>
           <div className="login__signin">
-            <form onSubmit={submitRegister}>
+            <form onSubmit={(event) => login(event)}>
               <div className="login__signin-email">
                 <label htmlFor="">
                   Имя пользователя *
                   <br />
-                  <input type="text" className="email-input" required />
+                  <input
+                    type="text"
+                    className="email-input"
+                    name="email"
+                    required
+                  />
                 </label>
               </div>
 
@@ -37,7 +44,7 @@ const Login = ({ register, submitRegister }) => {
                 <label htmlFor="">
                   Пароль *
                   <br />
-                  <input type="password" required />
+                  <input type="password" name="password" required />
                 </label>
               </div>
               <div className="login__signin-submit">
@@ -52,8 +59,7 @@ const Login = ({ register, submitRegister }) => {
 };
 
 Login.propTypes = {
-  login: PropTypes.func,
-  submitRegister: PropTypes.func,
+  handleRegister: PropTypes.func,
 };
 
 export default Login;
