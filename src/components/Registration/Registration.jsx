@@ -4,7 +4,7 @@ import Back from "../../img/registration-background.png";
 import PropTypes from "prop-types";
 import AuthContext from "../../contex/AuthContext";
 
-const Registration = ({ handleLogin }) => {
+const Registration = ({ handlePage }) => {
   const { login } = useContext(AuthContext);
 
 
@@ -23,7 +23,7 @@ const Registration = ({ handleLogin }) => {
           <div className="register-title">Регистрация</div>
           <div className="register__signup">
             <span>Уже зарегистрирован? </span>
-            <button className="register__signup-link" onClick={handleLogin}>
+            <button className="register__signup-link" value="login" onClick={handlePage}>
               Войти
             </button>
           </div>

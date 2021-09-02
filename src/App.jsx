@@ -32,13 +32,7 @@ function App() {
     setRouter(event.target.value);
   };
 
-  const handleRegister = () => {
-    setRouter("registration");
-  };
 
-  const handleLogin = () => {
-    setRouter("login");
-  };
 
   const backImg = () => {
     return Back;
@@ -59,11 +53,11 @@ function App() {
         {router === "map" && isLoggedIn === true ? (
           <Map />
         ) : router === "registration" ? (
-          <Registration back={backImg} handleLogin={handleLogin} />
+          <Registration back={backImg} handleLogin={handlePage} />
         ) : router === "profile" && isLoggedIn === true ? (
           <Profile />
         ) : (
-          <Login handleRegister={handleRegister} />
+          <Login handleRegister={handlePage} />
         )}
       </AuthContext.Provider>
     </div>
