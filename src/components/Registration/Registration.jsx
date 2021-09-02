@@ -1,66 +1,72 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Registration.styles.scss";
-import Back from "/js/react/project/loft_school/loft-taxi/src/img/registration-background.png";
+import Back from "../../img/registration-background.png";
+import PropTypes from "prop-types";
+import AuthContext from "../../contex/AuthContext";
 
-const Registration = ({ submitRegister, login }) => {
+const Registration = ({ handlePage }) => {
+  const { login } = useContext(AuthContext);
+
+
   return (
     <div
-      className='register'
+      className="register"
       style={{
-        fontSize: "30px",
         backgroundImage: "url(" + Back + ")",
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        position: "fixed",
       }}
     >
-      <div className='container'>
-        <div className='register-logo'>
-          <img src='loft__taxi-img.png' width='156px' alt='' />
+      <div className="container">
+        <div className="register-logo">
+          <img src="loft__taxi-img.png" width="156px" alt="" />
         </div>
-        <div className='register-form'>
-          <div className='register-title'>Регистрация</div>
-          <div className='register__signup'>
-            <p>Уже зарегистрирован? </p>{" "}
-            <button className='register__signup-link' onClick={login}>
+        <div className="register-form">
+          <div className="register-title">Регистрация</div>
+          <div className="register__signup">
+            <span>Уже зарегистрирован? </span>
+            <button className="register__signup-link" value="login" onClick={handlePage}>
               Войти
             </button>
           </div>
-          <div className='register__signin'>
-            <form onSubmit={submitRegister}>
-              <div className='register__signin-email'>
-                <label htmlFor=''>
+          <div className="register__signin">
+            <form onSubmit={(event) => login(event)}>
+              <div className="register__signin-email">
+                <label htmlFor="">
                   Адрес электронной почты
                   <br />
-                  <input type='text' className='email-input' required />
+                  <input
+                    type="text"
+                    className="email-input"
+                    name="email"
+                    required
+                  />
                 </label>
               </div>
-              <div className='signin__group'>
-                <div className='register__signin-name'>
-                  <label htmlFor=''>
+              <div className="signin__group">
+                <div className="register__signin-name">
+                  <label htmlFor="">
                     Имя
                     <br />
-                    <input type='text' required />
+                    <input type="text" required />
                   </label>
                 </div>
-                <div className='register__signin-surname'>
-                  <label htmlFor=''>
+                <div className="register__signin-surname">
+                  <label htmlFor="">
                     Фамилия
                     <br />
-                    <input type='text' required />
+                    <input type="text" required />
                   </label>
                 </div>
               </div>
 
-              <div className='register__signin-password'>
-                <label htmlFor=''>
+              <div className="register__signin-password">
+                <label htmlFor="">
                   Пароль
                   <br />
-                  <input type='password' required />
+                  <input type="password" name="password" required />
                 </label>
               </div>
-              <div className='register__signin-submit'>
-                <input type='submit' value='Зарегистрироваться' required />
+              <div className="register__signin-submit">
+                <input type="submit" value="Зарегистрироваться" required />
               </div>
             </form>
           </div>
@@ -68,6 +74,10 @@ const Registration = ({ submitRegister, login }) => {
       </div>
     </div>
   );
+};
+
+Registration.propTypes = {
+  handleLogin: PropTypes.func,
 };
 
 export default Registration;
