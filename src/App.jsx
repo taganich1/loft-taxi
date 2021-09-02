@@ -11,7 +11,6 @@ function App() {
   const [router, setRouter] = useState("registration");
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  /*  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);*/
 
   const logout = () => {
     setIsLoggedIn(false);
@@ -23,7 +22,7 @@ function App() {
       email: event.target.email.value,
       password: event.target.password.value,
     };
-    console.log(authData);
+
     setIsLoggedIn(true);
     setRouter("map");
   };
@@ -31,8 +30,6 @@ function App() {
   const handlePage = (event) => {
     setRouter(event.target.value);
   };
-
-
 
   const backImg = () => {
     return Back;
