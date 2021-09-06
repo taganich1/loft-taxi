@@ -3,9 +3,11 @@ import "./Login.styles.scss";
 import Back from "../../img/registration-background.png";
 import PropTypes from "prop-types";
 import AuthContext from "../../contex/AuthContext";
+import { Link, Route } from "react-router-dom";
+import Registration from "../Registration/Registration";
 
-const Login = ({ handlePage }) => {
-  const { login } = useContext(AuthContext);
+const Login = () => {
+
   return (
     <div
       className="login"
@@ -21,16 +23,18 @@ const Login = ({ handlePage }) => {
           <div className="login-title">Войти</div>
           <div className="login__signup">
             <span> Новый пользователь? </span>
-            <button
+            <Link
+              to="/registration"
               className="login__signup-link"
-              value="login"
-              onClick={handlePage}
+              value="registration"
             >
               Зарегистрируйтесь
-            </button>
+            </Link>
           </div>
+
           <div className="login__signin">
-            <form onSubmit={(event) => login(event)}>
+
+            <form onSubmit>
               <div className="login__signin-email">
                 <label htmlFor="">
                   Имя пользователя *
@@ -62,8 +66,10 @@ const Login = ({ handlePage }) => {
   );
 };
 
+/*
 Login.propTypes = {
   handleRegister: PropTypes.func,
 };
+*/
 
 export default Login;

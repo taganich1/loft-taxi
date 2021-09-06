@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
 import "./Map.styles.scss";
+import Header from "../Header/Header";
 
 const Map = () => {
   const mapContainer = useRef(null);
@@ -14,7 +15,9 @@ const Map = () => {
       zoom: 13,
     });
     return () => {
-      <MapGL />;
+
+
+        <MapGL />
     };
   }, []);
 

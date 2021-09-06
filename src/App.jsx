@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Header from "./components/Header/Header";
 import Map from "./components/Map/Map";
 import Profile from "./components/Profile/Profile";
@@ -6,11 +6,17 @@ import Registration from "./components/Registration/Registration";
 import Login from "./components/Login/Login";
 import Back from "./img/registration-background.png";
 import AuthContext from "./contex/AuthContext";
+import logo from "./img/logo.svg";
+import { Link, Route, Switch } from "react-router-dom";
+import MainRoutes from "./components/MainRoutes/MainRoutes";
+import AuthRoutes from "./components/AuthRoutes/AuthRoutes";
 
 function App() {
   const [router, setRouter] = useState("registration");
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const shouldShowHeader = window.location.pathname !== "/registration";
 
   const logout = () => {
     setIsLoggedIn(false);
@@ -27,9 +33,11 @@ function App() {
     setRouter("map");
   };
 
-  const handlePage = (event) => {
-    setRouter(event.target.value);
-  };
+  /*
+    const handlePage = (event) => {
+      setRouter(event.target.value);
+    };
+  */
 
   const backImg = () => {
     return Back;
@@ -43,19 +51,10 @@ function App() {
           login,
         }}
       >
-        {router === "login" ? null : router === "registration" ? null : (
-          <Header handlePage={handlePage} />
-        )}
-
-        {router === "map" && isLoggedIn === true ? (
-          <Map />
-        ) : router === "registration" ? (
-          <Registration back={backImg} handleLogin={handlePage} />
-        ) : router === "profile" && isLoggedIn === true ? (
-          <Profile />
-        ) : (
-          <Login handleRegister={handlePage} />
-        )}
+        <Switch>
+          <Route path="/(login|registration)" component={AuthRoutes} />
+          <Route component={MainRoutes} />
+        </Switch>
       </AuthContext.Provider>
     </div>
   );

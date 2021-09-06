@@ -3,10 +3,17 @@ import "./Registration.styles.scss";
 import Back from "../../img/registration-background.png";
 import PropTypes from "prop-types";
 import AuthContext from "../../contex/AuthContext";
+import { Link, Route } from "react-router-dom";
+import Login from "../Login/Login";
+import { useDispatch, useSelector } from "react-redux";
 
-const Registration = ({ handlePage }) => {
-  const { login } = useContext(AuthContext);
-
+const Registration = () => {
+  /* const dispatch = useDispatch();
+   const authed = useSelector((state) => state.authedReducer.authed);
+ 
+   const register = (authed) => {
+     dispatch({ type: "REGISTER", payload: authed });
+   };*/
 
   return (
     <div
@@ -23,12 +30,12 @@ const Registration = ({ handlePage }) => {
           <div className="register-title">Регистрация</div>
           <div className="register__signup">
             <span>Уже зарегистрирован? </span>
-            <button className="register__signup-link" value="login" onClick={handlePage}>
+            <Link to="/login" className="register__signup-link" value="login">
               Войти
-            </button>
+            </Link>
           </div>
           <div className="register__signin">
-            <form onSubmit={(event) => login(event)}>
+            <form onSubmit>
               <div className="register__signin-email">
                 <label htmlFor="">
                   Адрес электронной почты
@@ -66,7 +73,12 @@ const Registration = ({ handlePage }) => {
                 </label>
               </div>
               <div className="register__signin-submit">
-                <input type="submit" value="Зарегистрироваться" required />
+                <input
+                  type="submit"
+                  value="Зарегистрироваться"
+                  required
+                  onClick
+                />
               </div>
             </form>
           </div>
@@ -76,8 +88,10 @@ const Registration = ({ handlePage }) => {
   );
 };
 
+/*
 Registration.propTypes = {
   handleLogin: PropTypes.func,
 };
+*/
 
 export default Registration;

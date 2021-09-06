@@ -21,6 +21,7 @@ html {
         justify-content: space-between;
 
         .navbar-item {
+          text-decoration: none;
           cursor: pointer;
           padding: 12px 16px;
           margin-right: 5px;
@@ -30,6 +31,7 @@ html {
           border: none;
           border-radius: 4px;
           background-color: transparent;
+          color: #000
         }
       }
 
