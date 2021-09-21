@@ -1,4 +1,12 @@
 import { combineReducers } from "redux";
-import authReducers from "./authReducers";
+import { authReducer } from "./authReducer";
+import { registrationReducer } from "./registrationReducer";
+import { paymentReducer } from './paymentReducer';
+import { paymentDataReducer } from './paymentDataReducer';
 
-export const rootReducer = combineReducers({ authReducers: authReducers });
+export const rootReducer = combineReducers({
+  authReducer,
+  registrationReducer,
+  paymentReducer,
+  paymentDataReducer,
+});

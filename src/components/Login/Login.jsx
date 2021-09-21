@@ -1,12 +1,23 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import "./Login.styles.scss";
 import Back from "../../img/registration-background.png";
-import PropTypes from "prop-types";
-import AuthContext from "../../contex/AuthContext";
+
 import { Link, Route } from "react-router-dom";
-import Registration from "../Registration/Registration";
+
+import { useDispatch } from "react-redux";
+import { authorize } from "../../redux/actions/actions";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  /*  const { isLoggedIn } = useSelector((state) => state.auth);*/
+  const dispatch = useDispatch();
+
+  const authentication = (event) => {
+    event.preventDefault();
+    dispatch(authorize({ email, password }));
+  };
 
   return (
     <div
@@ -33,13 +44,14 @@ const Login = () => {
           </div>
 
           <div className="login__signin">
-
-            <form onSubmit>
+            <form onSubmit={authentication}>
               <div className="login__signin-email">
-                <label htmlFor="">
+                <label htmlFor="email">
                   Имя пользователя *
                   <br />
                   <input
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     type="text"
                     className="email-input"
                     name="email"
@@ -49,14 +61,20 @@ const Login = () => {
               </div>
 
               <div className="login__signin-password">
-                <label htmlFor="">
+                <label htmlFor="password">
                   Пароль *
                   <br />
-                  <input type="password" name="password" required />
+                  <input
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    type="password"
+                    name="password"
+                    required
+                  />
                 </label>
               </div>
               <div className="login__signin-submit">
-                <input type="submit" value="Зарегистрироваться" required />
+                <input type="submit" value="Войти" />
               </div>
             </form>
           </div>
@@ -67,9 +85,11 @@ const Login = () => {
 };
 
 /*
-Login.propTypes = {
-  handleRegister: PropTypes.func,
-};
+Login.propTypes =
+  {
+    handleRegister: PropTypes.func,
+  }
+;
 */
 
 export default Login;

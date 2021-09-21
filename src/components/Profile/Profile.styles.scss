@@ -1,0 +1,139 @@
+.profile {
+  width: 100%;
+  height: 100%;
+  font-size: 30px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &-container {
+    background-color: #fff;
+    display: inline-block;
+    padding: 44px 60px 44px 60px;
+    border-radius: 6px;
+  }
+
+  &__title {
+    text-align: center;
+
+    &-text {
+      font-size: 45px;
+    }
+
+    &-description {
+      color: rgba(0, 0, 0, 0.54);
+      font-size: 20px;
+
+    }
+
+    margin-bottom: 40px;
+  }
+
+  &__card-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+  }
+
+  &__number {
+    .card__expires {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+
+    &-img {
+      position: absolute;
+      right: 10px;
+      margin-bottom: 40px;
+      top: 16px;
+    }
+
+    position: relative;
+    width: 300px;
+    -webkit-box-shadow: 2px 5px 16px 0px #000, 50px 33px 18px 48px rgba(0, 0, 0, 0);
+    box-shadow: 2px 5px 16px 0px #000, 50px 33px 18px 48px rgba(0, 0, 0, 0);
+    margin-right: 18px;
+    border-radius: 4px;
+    padding: 40px 32px 16px 32px;
+    color: rgba(0, 0, 0, 0.54);
+    font-size: 16px;
+
+    input {
+      width: 100%;
+      background: transparent;
+      border-bottom: 1px solid rgb(118, 118, 118);
+      border-top: none;
+      border-right: none;
+      border-left: none;
+      height: 30px;
+      min-height: 30px;
+      font-size: 15px;
+      box-sizing: border-box;
+    }
+
+    input:focus {
+      outline: none;
+      border-bottom: 3px solid #1473e6;
+    }
+
+  }
+
+  &__name {
+    width: 300px;
+    -webkit-box-shadow: 2px 5px 16px 0px #000, 50px 33px 18px 48px rgba(0, 0, 0, 0);
+    box-shadow: 2px 5px 16px 0px #000, 50px 33px 18px 48px rgba(0, 0, 0, 0);
+    margin-right: 16px;
+    border-radius: 4px;
+    margin-left: 18px;
+    padding: 40px 32px 16px 32px;
+    color: rgba(0, 0, 0, 0.54);
+    font-size: 16px;
+
+    .card__cvc {
+      padding-top: 20px;
+    }
+
+    input {
+      width: 100%;
+      background: transparent;
+      border-bottom: 1px solid rgb(118, 118, 118);
+      border-top: none;
+      border-right: none;
+      border-left: none;
+      height: 30px;
+      min-height: 30px;
+      font-size: 15px;
+      box-sizing: border-box;
+    }
+
+    input:focus {
+      outline: none;
+      border-bottom: 3px solid #1473e6;
+    }
+
+  }
+
+  .profile__card-submit {
+    text-align: center;
+
+    input {
+      background-color: #ffc617;
+      border: none;
+      border-radius: 4px;
+      padding: 15px 30px;
+      cursor: pointer;
+      font-size: 17px;
+      box-sizing: border-box;
+
+      &:hover {
+        -webkit-box-shadow: 0px 8px 21px 17px rgba(34, 60, 80, 0.2) inset;
+        -moz-box-shadow: 0px 8px 21px 17px rgba(34, 60, 80, 0.2) inset;
+        box-shadow: 0px 8px 21px 17px rgba(34, 60, 80, 0.2) inset;
+      }
+    }
+
+  }
+}

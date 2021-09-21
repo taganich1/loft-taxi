@@ -1,22 +1,26 @@
-import { LOG_IN, LOG_OUT, AUTHENTICATE, REGISTER } from "../actions/actions";
+import { LOG_OUT } from "../actions/actions";
 
-const defaultState = {
-  isLoggedIn: false,
+export const AUTH_REQUEST = "AUTH_REQUEST";
+export const AUTH_SUCCESS = "AUTH_SUCCESS";
+export const AUTH_FAILURE = "AUTH_FAILURE";
+
+const initialState = {
+  token: localStorage.getItem("token") || null,
+  error: null,
 };
 
-const authReducers = (state = defaultState, action) => {
+export const authReducer = (state = initialState, action) => {
   switch (action.type) {
-    case LOG_IN:
-      return { isLoggedIn: true };
-    case LOG_OUT:
-      return { isLoggedIn: false };
-    case AUTHENTICATE:
-      return { isLoggedIn: true };
-    case REGISTER:
-      return { isLoggedIn: true };
+    case AUTH_SUCCESS: {
+      return { ...state, token: action.payload };
+    }
+    case AUTH_FAILURE: {
+      return { ...state, error: action.payload };
+    }
+    case LOG_OUT: {
+      return { ...state, token: null, error: null };
+    }
     default:
       return state;
   }
 };
-
-export default authReducers;

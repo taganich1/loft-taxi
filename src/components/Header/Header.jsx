@@ -1,16 +1,21 @@
 import React, { useContext } from "react";
 import "./Header.styles.scss";
-import { Link, NavLink, Route, Switch } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../../img/logo.svg";
-import PropTypes from "prop-types";
+
 import AuthContext from "../../contex/AuthContext";
-import Login from "../Login/Login";
-import Profile from "../Profile/Profile";
-import Map from "../Map/Map";
-import Registration from "../Registration/Registration";
+
+import { connect, useDispatch } from "react-redux";
+import { logOutAction } from "../../redux/actions/actions";
 
 const Header = () => {
   const context = useContext(AuthContext);
+  const dispatch = useDispatch();
+
+  const handleLogOut = () => {
+    dispatch(logOutAction);
+    localStorage.removeItem("token");
+  };
 
   return (
     <div>
@@ -31,9 +36,9 @@ const Header = () => {
           <Link className="navbar-item" to="/profile">
             Профиль
           </Link>
-          <Link className="navbar-item" to="/login">
+          <button className="navbar-item" onClick={handleLogOut}>
             Выйти
-          </Link>
+          </button>
         </div>
       </header>
     </div>

@@ -20,6 +20,8 @@ html {
         display: flex;
         justify-content: space-between;
 
+
+
         .navbar-item {
           text-decoration: none;
           cursor: pointer;
@@ -31,7 +33,9 @@ html {
           border: none;
           border-radius: 4px;
           background-color: transparent;
-          color: #000
+          color: #000;
+          text-align: center;
+
         }
       }
 

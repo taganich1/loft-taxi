@@ -1,19 +1,43 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import "./Registration.styles.scss";
 import Back from "../../img/registration-background.png";
-import PropTypes from "prop-types";
-import AuthContext from "../../contex/AuthContext";
-import { Link, Route } from "react-router-dom";
-import Login from "../Login/Login";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { registrationAction } from "../../redux/actions/actions";
 
 const Registration = () => {
   /* const dispatch = useDispatch();
-   const authed = useSelector((state) => state.authedReducer.authed);
+   const authed = useSelector((state) => state.authReducer.authed);
  
    const register = (authed) => {
      dispatch({ type: "REGISTER", payload: authed });
    };*/
+
+  const dispatch = useDispatch();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+
+  const token = useSelector((state) => state.registrationReducer.token);
+
+  /*  const createUser = async (event) => {
+      event.preventDefault();
+      let formData = {
+        name: event.target[1].value,
+        email: event.target[2].value,
+        surname: event.target[3].value,
+        password: event.target[4].value,
+      };
+      const isValid = await userSchema.isValid(formData);
+      console.log(isValid);
+    };*/
+
+  const registration = (event) => {
+    event.preventDefault();
+    dispatch(registrationAction({ email, password, name, surname }));
+  };
 
   return (
     <div
@@ -35,7 +59,7 @@ const Registration = () => {
             </Link>
           </div>
           <div className="register__signin">
-            <form onSubmit>
+            <form onSubmit={registration}>
               <div className="register__signin-email">
                 <label htmlFor="">
                   Адрес электронной почты
@@ -44,7 +68,9 @@ const Registration = () => {
                     type="text"
                     className="email-input"
                     name="email"
+                    placeholder="email@email.com"
                     required
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </label>
               </div>
@@ -53,14 +79,26 @@ const Registration = () => {
                   <label htmlFor="">
                     Имя
                     <br />
-                    <input type="text" required />
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder="Name..."
+                      required
+                      onChange={(e) => setName(e.target.value)}
+                    />
                   </label>
                 </div>
                 <div className="register__signin-surname">
                   <label htmlFor="">
                     Фамилия
                     <br />
-                    <input type="text" required />
+                    <input
+                      type="text"
+                      name="surname"
+                      placeholder="Surname..."
+                      required
+                      onChange={(e) => setSurname(e.target.value)}
+                    />
                   </label>
                 </div>
               </div>
@@ -69,16 +107,17 @@ const Registration = () => {
                 <label htmlFor="">
                   Пароль
                   <br />
-                  <input type="password" name="password" required />
+                  <input
+                    type="password"
+                    name="password"
+                    placeholder="password123"
+                    required
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
                 </label>
               </div>
               <div className="register__signin-submit">
-                <input
-                  type="submit"
-                  value="Зарегистрироваться"
-                  required
-                  onClick
-                />
+                <input type="submit" value="Зарегистрироваться" required />
               </div>
             </form>
           </div>

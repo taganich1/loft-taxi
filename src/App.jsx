@@ -1,15 +1,10 @@
 import React, { useState } from "react";
-import Header from "./components/Header/Header";
-import Map from "./components/Map/Map";
-import Profile from "./components/Profile/Profile";
-import Registration from "./components/Registration/Registration";
-import Login from "./components/Login/Login";
 import Back from "./img/registration-background.png";
 import AuthContext from "./contex/AuthContext";
-import logo from "./img/logo.svg";
-import { Link, Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import MainRoutes from "./components/MainRoutes/MainRoutes";
 import AuthRoutes from "./components/AuthRoutes/AuthRoutes";
+import { useSelector } from "react-redux";
 
 function App() {
   const [router, setRouter] = useState("registration");
@@ -17,6 +12,8 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const shouldShowHeader = window.location.pathname !== "/registration";
+
+  const token = useSelector((state) => state.authReducer.token);
 
   const logout = () => {
     setIsLoggedIn(false);
@@ -51,6 +48,8 @@ function App() {
           login,
         }}
       >
+        {token ? <Redirect to="/profile" /> : <Redirect to="/login" />}
+
         <Switch>
           <Route path="/(login|registration)" component={AuthRoutes} />
           <Route component={MainRoutes} />
