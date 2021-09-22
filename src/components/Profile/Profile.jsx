@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Profile.styles.scss";
 import Back from "../../img/registration-background.png";
 import masterCard from "../../img/mastercard-logo.svg";
@@ -8,27 +8,37 @@ import {
   setPaymentDataAction,
 } from "../../redux/actions/actions";
 import { authReducer } from "../../redux/reducers/authReducer";
-import mapboxgl from "mapbox-gl";
 
 const Profile = () => {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.authReducer.token);
-  const id = useSelector((state) => state.paymentDataReducer.id);
 
-  const [cardNumber, setCardNumber] = useState("");
-  const [expiryDate, setExpiryDate] = useState("");
-  const [cardName, setCardName] = useState("masterCard");
-  const [cvc, setCvc] = useState("");
+  const { id, cardName, cvc, cardNumber, expiryDate } = useSelector(
+    (state) => state.paymentDataReducer
+  );
+
+  const [cardNumberInput, setCardNumberInput] = useState(cardNumber);
+  const [expiryDateInput, setExpiryDateInput] = useState(expiryDate);
+  const [cardNameInput, setCardNameInput] = useState(cardName);
+  const [cvcInput, setCvcInput] = useState(cvc);
+  const [loading, setLoading] = useState(false);
 
   const setPaymentData = (event) => {
     event.preventDefault();
     dispatch(
-      setPaymentDataAction({ cardNumber, expiryDate, cardName, cvc, token })
+      setPaymentDataAction({
+        cardNumberInput,
+        expiryDateInput,
+        cardNameInput,
+        cvcInput,
+        token,
+      })
     );
   };
+
   useEffect(() => {
-    dispatch(getPaymentDataAction({ cardNumber }));
-  }, [token]);
+    dispatch(getPaymentDataAction(token));
+  }, [dispatch]);
 
   return (
     <div className="profile" style={{ backgroundImage: "url(" + Back + ")" }}>
@@ -37,7 +47,7 @@ const Profile = () => {
           <div className="profile__title-text">Профиль</div>
           <div className="profile__title-description">Способ оплаты</div>
         </div>
-
+        {loading ? <div>...Loading</div> : null}
         <form onSubmit={setPaymentData}>
           <div className="profile__card-group">
             <div className="profile__number">
@@ -54,8 +64,9 @@ const Profile = () => {
                   <br />
                   <input
                     type="text"
+                    value={cardNumberInput}
                     className="profile__card-number"
-                    onChange={(e) => setCardNumber(e.target.value)}
+                    onChange={(e) => setCardNumberInput(e.target.value)}
                     name="card-number"
                     required
                   />
@@ -63,11 +74,13 @@ const Profile = () => {
               </div>
               <div className="card__expires">
                 <label htmlFor="">
+                  Срок действия карты*
                   <br />
                   <input
                     type="text"
+                    value={expiryDateInput}
                     className="profile__card-data"
-                    onChange={(e) => setExpiryDate(e.target.value)}
+                    onChange={(e) => setExpiryDateInput(e.target.value)}
                     name="expiry-date"
                     required
                   />
@@ -82,8 +95,9 @@ const Profile = () => {
                   <br />
                   <input
                     type="text"
+                    value={cardNameInput}
                     className="profile__card-name"
-                    onChange={(e) => setCardName(e.target.value)}
+                    onChange={(e) => setCardNameInput(e.target.value)}
                     name="number"
                     required
                   />
@@ -95,8 +109,9 @@ const Profile = () => {
                   <br />
                   <input
                     type="text"
+                    value={cvcInput}
                     className="profile__card-cvc"
-                    onChange={(e) => setCvc(e.target.value)}
+                    onChange={(e) => setCvcInput(e.target.value)}
                     name="cvc"
                     required
                   />

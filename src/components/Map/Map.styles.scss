@@ -11,6 +11,23 @@
   right: 0;
   bottom: 0;
   height: 690px;
+
+  &:hover {
+    cursor: grab;
+  }
+
+  &.active {
+    cursor: grabbing;
+  }
+
+  &-routes {
+    background-color: #fff;
+    display: inline-block;
+    padding: 44px 60px 44px 60px;
+    border-radius: 6px;
+    left: 100px;
+    top: 300px;
+  }
 }
 
 .mapboxgl-control-container {

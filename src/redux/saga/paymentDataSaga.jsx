@@ -1,4 +1,4 @@
-import { call, put, takeLatest, all } from "redux-saga/effects";
+import { call, put, takeLatest, takeEvery, all } from "redux-saga/effects";
 
 import {
   PAYMENT_DATA_FAILURE,
@@ -6,16 +6,26 @@ import {
   PAYMENT_DATA_SUCCESS,
 } from "../reducers/paymentDataReducer";
 import { serverGetDataPayment } from "../api/api";
+import {
+  getPaymentDataFailureAction,
+  getPaymentDataSuccessAction,
+} from "../actions/actions";
 
 /////////login
 
 function* getPaymentData({ payload }) {
-  console.log(payload, "getDataPayload");
+  console.log(payload, "getDataPayload aaa");
   try {
-    const { id } = yield call(serverGetDataPayment, payload);
-    console.log(id, "id");
-    yield put({ type: PAYMENT_DATA_SUCCESS, payload: id });
-    localStorage.setItem("id", id);
+    const data = yield call(serverGetDataPayment, payload);
+    console.log(data, "uuu");
+    /*const payload = yield call(serverGetDataPayment, payload);*/
+    /*const { cardName } = yield call(serverGetDataPayment, payload);
+    const { cvc } = yield call(serverGetDataPayment, payload);
+    const { expiryDate } = yield call(serverGetDataPayment, payload);*/
+
+    yield put(getPaymentDataSuccessAction(data));
+
+    localStorage.setItem("id", data.id);
   } catch (error) {
     let message;
     switch (error.status) {
@@ -25,7 +35,7 @@ function* getPaymentData({ payload }) {
       default:
         message = "Something went wrong";
     }
-    yield put({ type: PAYMENT_DATA_FAILURE, payload: message });
+    yield put(getPaymentDataFailureAction(message));
     localStorage.removeItem("id");
   }
 }
