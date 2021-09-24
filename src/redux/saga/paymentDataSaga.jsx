@@ -25,7 +25,7 @@ function* getPaymentData({ payload }) {
 
     yield put(getPaymentDataSuccessAction(data));
 
-    localStorage.setItem("id", data.id);
+
   } catch (error) {
     let message;
     switch (error.status) {
@@ -36,7 +36,7 @@ function* getPaymentData({ payload }) {
         message = "Something went wrong";
     }
     yield put(getPaymentDataFailureAction(message));
-    localStorage.removeItem("id");
+
   }
 }
 

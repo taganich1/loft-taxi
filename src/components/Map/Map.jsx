@@ -7,6 +7,7 @@ import {
   getAddressListAction,
   setPaymentDataAction,
 } from "../../redux/actions/actions";
+import address from "address";
 
 const Map = () => {
   const dispatch = useDispatch();
@@ -25,7 +26,8 @@ const Map = () => {
   const [departure, setDeparture] = useState("");
   const [arrival, setArrival] = useState("");
   const [grab, setGrab] = useState(false);
-
+  const defaultOptionValue = "";
+  console.log(departure);
   const mapContainer = useRef(null);
 
   useEffect(() => {
@@ -63,22 +65,45 @@ const Map = () => {
       <div className="map-routes" style={{ position: "relative" }}>
         <form action="">
           <div className="form-group">
-            <label>Откуда:</label>
-            <select
-              name="addresses"
-              className="form-control"
-              onChange={setDeparture}
-            >
-              {addresses &&
-                addresses.map((address) => (
-                  <option value={address}>{address}</option>
-                ))}
-            </select>
-            <label>Куда:</label>
-            <select name="addresses" className="form-control">
-              {addresses &&
-                addresses.map((address) => <option>{address}</option>)}
-            </select>
+            <div className="addresses__departure">
+              <label>Откуда:</label>
+              <select
+                name="addresses"
+                className="form-control"
+                onChange={(e) => {
+                  setDeparture(e.target.value);
+                }}
+              >
+                <option>{defaultOptionValue}</option>
+                {addresses &&
+                  addresses.map((address) => (
+                    <option key={address} value={address}>
+                      {address}
+                    </option>
+                  ))}
+              </select>
+            </div>
+            <div className="addresses__arrival">
+              <label>Куда:</label>
+              <select
+                name="addresses"
+                className="form-control"
+                onChange={(e) => {
+                  setArrival(e.target.value);
+                }}
+              >
+                <option>{defaultOptionValue}</option>
+                {addresses &&
+                  addresses.map(
+                    (address, i) =>
+                      address !== departure && (
+                        <option key={i} value={address}>
+                          {address}
+                        </option>
+                      )
+                  )}
+              </select>
+            </div>
           </div>
         </form>
       </div>

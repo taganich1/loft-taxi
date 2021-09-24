@@ -27,9 +27,50 @@
     border-radius: 6px;
     left: 100px;
     top: 300px;
+    -webkit-box-shadow: 2px 5px 16px 0px #000, 50px 33px 18px 48px rgba(0, 0, 0, 0);
+    box-shadow: 2px 5px 16px 0px #000, 50px 33px 18px 48px rgba(0, 0, 0, 0);
+    margin-right: 18px;
+    color: rgba(0, 0, 0, 0.54);
+  }
+
+}
+
+.form-group {
+  font-size: 20px;
+  color: grey;
+
+  .addresses__departure {
+    border-bottom: 1px solid rgb(118, 118, 118);
+    margin-bottom: 20px;
+
+    label {
+      padding-right: 20px;
+    }
+  }
+
+  .addresses__arrival {
+    border-bottom: 1px solid rgb(118, 118, 118);
+
+    select {
+
+    }
+
+    label {
+      padding-right: 39px;
+    }
+
   }
 }
 
 .mapboxgl-control-container {
   display: none;
+}
+
+select {
+  outline: none;
+  border: none;
+  max-width: 200px;
+
+  font-size: 20px;
+  color: grey;
 }

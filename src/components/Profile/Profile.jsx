@@ -13,32 +13,53 @@ const Profile = () => {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.authReducer.token);
 
-  const { id, cardName, cvc, cardNumber, expiryDate } = useSelector(
-    (state) => state.paymentDataReducer
-  );
+  const cardInfo = useSelector((state) => state.paymentDataReducer);
 
-  const [cardNumberInput, setCardNumberInput] = useState(cardNumber);
-  const [expiryDateInput, setExpiryDateInput] = useState(expiryDate);
-  const [cardNameInput, setCardNameInput] = useState(cardName);
-  const [cvcInput, setCvcInput] = useState(cvc);
-  const [loading, setLoading] = useState(false);
+  console.log(cardInfo.cardNumber);
+  const [card, setCard] = useState({
+    cardNumber: "",
+    cardName: "",
+    expiryDate: "",
+    cvc: "",
+  });
+
+  /* console.log(cardTest, "card state");
+   const [cardNumberInput, setCardNumberInput] = useState("");
+   const [expiryDateInput, setExpiryDateInput] = useState("");
+   const [cardNameInput, setCardNameInput] = useState("");
+   const [cvcInput, setCvcInput] = useState("");*/
+
+  useEffect(() => {
+    dispatch(getPaymentDataAction(token));
+    console.log(cardInfo.cardNumber);
+
+    /* handleCardInputs("cardName", cardInfo.cardName);
+     handleCardInputs("expiryDate", cardInfo.expiryDate);
+     handleCardInputs("cvc", cardInfo.cvc);*/
+  }, []);
+
+  useEffect(() => {
+    setCard(cardInfo);
+  }, [cardInfo]);
 
   const setPaymentData = (event) => {
     event.preventDefault();
+    const test = { ...card };
+    console.log(test);
     dispatch(
       setPaymentDataAction({
-        cardNumberInput,
-        expiryDateInput,
-        cardNameInput,
-        cvcInput,
+        ...test,
         token,
       })
     );
   };
 
-  useEffect(() => {
-    dispatch(getPaymentDataAction(token));
-  }, [dispatch]);
+  const handleCardInputs = (inputName, value) => {
+    setCard((prev) => ({
+      ...prev,
+      [inputName]: value,
+    }));
+  };
 
   return (
     <div className="profile" style={{ backgroundImage: "url(" + Back + ")" }}>
@@ -47,7 +68,7 @@ const Profile = () => {
           <div className="profile__title-text">Профиль</div>
           <div className="profile__title-description">Способ оплаты</div>
         </div>
-        {loading ? <div>...Loading</div> : null}
+
         <form onSubmit={setPaymentData}>
           <div className="profile__card-group">
             <div className="profile__number">
@@ -64,9 +85,11 @@ const Profile = () => {
                   <br />
                   <input
                     type="text"
-                    value={cardNumberInput}
+                    value={card.cardNumber}
                     className="profile__card-number"
-                    onChange={(e) => setCardNumberInput(e.target.value)}
+                    onChange={(e) =>
+                      handleCardInputs("cardNumber", e.target.value)
+                    }
                     name="card-number"
                     required
                   />
@@ -78,9 +101,11 @@ const Profile = () => {
                   <br />
                   <input
                     type="text"
-                    value={expiryDateInput}
+                    value={card.expiryDate}
                     className="profile__card-data"
-                    onChange={(e) => setExpiryDateInput(e.target.value)}
+                    onChange={(e) =>
+                      handleCardInputs("expiryDate", e.target.value)
+                    }
                     name="expiry-date"
                     required
                   />
@@ -95,9 +120,11 @@ const Profile = () => {
                   <br />
                   <input
                     type="text"
-                    value={cardNameInput}
+                    value={card.cardName}
                     className="profile__card-name"
-                    onChange={(e) => setCardNameInput(e.target.value)}
+                    onChange={(e) =>
+                      handleCardInputs("cardName", e.target.value)
+                    }
                     name="number"
                     required
                   />
@@ -109,9 +136,9 @@ const Profile = () => {
                   <br />
                   <input
                     type="text"
-                    value={cvcInput}
+                    value={card.cvc}
                     className="profile__card-cvc"
-                    onChange={(e) => setCvcInput(e.target.value)}
+                    onChange={(e) => handleCardInputs("cvc", e.target.value)}
                     name="cvc"
                     required
                   />

@@ -48,7 +48,7 @@ function App() {
           login,
         }}
       >
-        {token ? <Redirect to="/profile" /> : <Redirect to="/login" />}
+        {!token && <Redirect to="/login" />}
 
         <Switch>
           <Route path="/(login|registration)" component={AuthRoutes} />
