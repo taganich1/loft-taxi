@@ -30,6 +30,10 @@ function* authorize({ payload }) {
   }
 }
 
+
+
+
+
 export function* authorizeWatcher() {
   yield takeLatest(AUTH_REQUEST, authorize);
 }

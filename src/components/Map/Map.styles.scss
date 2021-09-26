@@ -31,6 +31,22 @@
     box-shadow: 2px 5px 16px 0px #000, 50px 33px 18px 48px rgba(0, 0, 0, 0);
     margin-right: 18px;
     color: rgba(0, 0, 0, 0.54);
+
+    &__error {
+      font-size: 23px;
+      color: red;
+      width: 400px;
+
+      &__link {
+        color: blue;
+        text-decoration: none;
+        font-size: 18px;
+
+        &:hover {
+          border-bottom: 1px solid blue;
+        }
+      }
+    }
   }
 
 }

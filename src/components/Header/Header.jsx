@@ -1,15 +1,10 @@
-import React, { useContext } from "react";
 import "./Header.styles.scss";
 import { Link } from "react-router-dom";
 import logo from "../../img/logo.svg";
-
-import AuthContext from "../../contex/AuthContext";
-
-import { connect, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { logOutAction } from "../../redux/actions/actions";
 
 const Header = () => {
-  const context = useContext(AuthContext);
   const dispatch = useDispatch();
 
   const handleLogOut = () => {
@@ -36,9 +31,9 @@ const Header = () => {
           <Link className="navbar-item" to="/profile">
             Профиль
           </Link>
-          <button className="navbar-item" onClick={handleLogOut}>
+          <Link to="/login" className="navbar-item" onClick={handleLogOut}>
             Выйти
-          </button>
+          </Link>
         </div>
       </header>
     </div>

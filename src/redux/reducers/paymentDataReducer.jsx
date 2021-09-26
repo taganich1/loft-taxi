@@ -3,8 +3,8 @@ export const PAYMENT_DATA_SUCCESS = "PAYMENT_DATA_SUCCESS";
 export const PAYMENT_DATA_FAILURE = "PAYMENT_DATA_FAILURE";
 
 const initialState = {
-  id: localStorage.getItem("id") || null,
-  error: null,
+  /*id: localStorage.getItem("id") || null,*/
+  /*error: null,*/
   cardNumber: "",
   expiryDate: "",
   cardName: "",
