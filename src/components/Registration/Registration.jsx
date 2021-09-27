@@ -28,10 +28,7 @@ const Registration = () => {
       .min(5, "Пароль должен содержать более 5 символов")
       .max(16, "Пароль должен содержать менее 16 символлов"),
   });
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [surname, setSurname] = useState("");
+
   const dispatch = useDispatch();
   const token = useSelector((state) => state.authReducer.token);
   console.log(token, "opa");
