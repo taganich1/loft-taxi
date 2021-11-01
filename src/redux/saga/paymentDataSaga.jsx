@@ -14,18 +14,9 @@ import {
 /////////login
 
 function* getPaymentData({ payload }) {
-  console.log(payload, "getDataPayload aaa");
   try {
     const data = yield call(serverGetDataPayment, payload);
-    console.log(data, "uuu");
-    /*const payload = yield call(serverGetDataPayment, payload);*/
-    /*const { cardName } = yield call(serverGetDataPayment, payload);
-    const { cvc } = yield call(serverGetDataPayment, payload);
-    const { expiryDate } = yield call(serverGetDataPayment, payload);*/
-
     yield put(getPaymentDataSuccessAction(data));
-
-
   } catch (error) {
     let message;
     switch (error.status) {

@@ -11,6 +11,7 @@ const initialState = {
   cvc: "",
 };
 
+
 export const paymentDataReducer = (state = initialState, action) => {
   switch (action.type) {
     case PAYMENT_DATA_SUCCESS: {

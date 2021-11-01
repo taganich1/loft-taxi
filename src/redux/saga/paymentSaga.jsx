@@ -13,7 +13,6 @@ function* payment({ payload }) {
   console.log(payload, "sagaPayload payment ");
   try {
     const { token } = yield call(serverPayment, payload);
-
     console.log(token, "token");
     yield put({ type: PAYMENT_SUCCESS, payload: token });
   } catch (error) {
